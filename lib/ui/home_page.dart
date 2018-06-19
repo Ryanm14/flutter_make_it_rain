@@ -8,6 +8,15 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  int _moneyCounter = 0;
+
+  void _rainMoney() {
+    //call setState when you need to update UI
+    setState(() {
+      _moneyCounter += 100;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -29,13 +38,24 @@ class HomePageState extends State<HomePage> {
               ),
               new Expanded(
                   child: new Center(
-                      child: new Text("Money!",
+                      child: new Text("Money!\n\$$_moneyCounter",
+                          textAlign: TextAlign.center,
                           style: new TextStyle(
                               color: Colors.greenAccent,
                               fontSize: 45.0,
-                              fontWeight: FontWeight.w400))))
+                              fontWeight: FontWeight.w400)))),
+              new Expanded(child: new Center(
+                  child: new FlatButton(
+                      color: Colors.lightGreen,
+                      textColor: Colors.white70,
+                      onPressed: () => _rainMoney(),
+                      child: new Text("Let It Rain!",
+                          style: new TextStyle(
+                            fontSize: 19.9,
+                          ))))
+              )
             ],
-          ),
-        ));
+          ),)
+    );
   }
 }
